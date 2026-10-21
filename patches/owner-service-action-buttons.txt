@@ -1,0 +1,8 @@
+<div style={{display:'flex',flexWrap:'wrap',gap:10,alignItems:'center',alignSelf:'end'}}>
+ <button type="submit" className="button-gold" style={{width:'auto',minWidth:0,padding:'10px 20px',fontSize:13,borderRadius:999}} disabled={disabled}>Save changes</button>
+ <button type="button" disabled={disabled} onClick={()=>onRemove(service.is_active?'deactivate':'delete')}
+  className="rounded-full border px-4 py-2.5 text-xs font-semibold transition-colors disabled:opacity-50"
+  style={{borderColor:service.is_active?'#766043':'#8b4c4c',color:service.is_active?'#e8ca91':'#edb3b3',background:'#121113'}}>
+  {service.is_active?'Deactivate':'Delete permanently'}
+ </button>
+</div>

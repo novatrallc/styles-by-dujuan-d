@@ -1,0 +1,23 @@
+ async function addService(values:{name:string;description:string;price_cents:number;duration_minutes:number}):Promise<boolean>{
+  if(!client)return false;
+  setLoading(true);
+  setMessage('');
+  try {
+   const {data:session}=await client.auth.getSession();
+   const t=session.session?.access_token;
+   if(!t){setMessage('Please sign in again.');return false;}
+   const response=await fetch('/api/owner/services',{
+    method:'POST',
+    headers:{'Content-Type':'application/json',Authorization:`Bearer ${t}`},
+    body:JSON.stringify(values),
+    cache:'no-store',
+   });
+   const result=await response.json().catch(()=>({error:'Could not read the service response.'}));
+   if(!response.ok){setMessage(result.error??'Could not create service.');return false;}
+   await load(t);
+   setMessage('New service added as inactive. Review it below and activate when ready.');
+   setShowAddService(false);
+   return true;
+  }catch{setMessage('Could not reach the server. Please try again.');return false;}
+  finally{setLoading(false);}
+ }

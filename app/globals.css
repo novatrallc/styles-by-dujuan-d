@@ -1,0 +1,129 @@
+@import "tailwindcss";
+:root { color-scheme: dark; --ink: #090a0c; --gold: #d9b77d; --cream: #f5f0e7; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--ink); color: var(--cream); font-family: Arial, Helvetica, sans-serif; }
+a { text-decoration: none; }
+::selection { background: var(--gold); color: var(--ink); }
+.gold { color: var(--gold); }
+.section-wrap { max-width: 1240px; margin: auto; padding: 0 1.5rem; }
+.button-gold { background: linear-gradient(110deg,#e8cf9b,#bd8c43); color: #16100a; border-radius: 999px; font-weight: 700; padding: .9rem 1.55rem; display: inline-flex; align-items: center; justify-content: center; transition: transform .2s,filter .2s; }
+.button-gold:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.button-outline { border: 1px solid #d9b77d66; border-radius: 999px; padding: .9rem 1.55rem; display: inline-flex; align-items: center; justify-content: center; }
+.button-outline:hover { background: #d9b77d18; }
+a:focus-visible,button:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.display { font-family: Georgia, 'Times New Roman', serif; }
+.luxe-card { background: linear-gradient(145deg,#1b1a19,#101113); border: 1px solid #d9b77d25; border-radius: 1.4rem; }
+
+/* B3.1 shared vertical rhythm: apply section-space to full-width content sections. */
+:root { --section-pad: 80px; --hero-pad: 96px; --section-gap: 32px; }
+.section-space { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.hero-space { padding-top: var(--hero-pad); padding-bottom: var(--hero-pad); }
+.section-heading { margin-bottom: var(--section-gap); }
+@media (max-width: 767px) { :root { --section-pad: 48px; --hero-pad: 64px; --section-gap: 24px; } }
+
+/* B3.2 owner-console navigation and consistent layout rhythm */
+.owner-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 8px;padding-bottom:12px;border-bottom:1px solid #3b3022}
+.owner-tab{border:1px solid #51422d;border-radius:999px;background:#161618;color:#e7d9c4;padding:11px 17px;cursor:pointer;font:inherit}
+.owner-tab:hover,.owner-tab:focus-visible{border-color:#d6ad6b;outline-offset:3px}
+.owner-tab.active{background:linear-gradient(110deg,#f1d69a,#c89a4d);color:#1b140c;border-color:transparent;font-weight:700}
+.owner-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:20px}
+.owner-stats>div{display:flex;flex-direction:column;gap:8px;padding:22px;border:1px solid #453a2d;border-radius:12px;background:#111113}
+.owner-stats strong{font-size:2rem;color:#eac581}.owner-stats span{font-size:.85rem;color:#d3c6b6}
+
+/* B3.4 — premium owner navigation and authentication */
+.owner-tabs{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 0 18px;border-bottom:1px solid #443728}
+.owner-tab{display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:background .2s ease,border-color .2s ease,transform .2s ease;white-space:nowrap}
+.owner-tab:hover{transform:translateY(-2px);border-color:#c9a15f}
+.owner-tab:focus-visible,.owner-signout:focus-visible,.owner-modal button:focus-visible{outline:2px solid #e9c889;outline-offset:3px}
+.owner-signout{display:inline-flex;align-items:center;gap:9px;background:transparent;border:1px solid #675238;border-radius:10px;padding:12px 16px;color:#f7f0e5;cursor:pointer;transition:background .2s ease}
+.owner-signout:hover{background:#26201a}
+.owner-login-brand{display:flex;align-items:center;gap:18px;margin-bottom:6px}
+.owner-login-mark{flex:none;display:grid;place-items:center;width:58px;height:58px;border:1px solid #b28b52;border-radius:16px;background:linear-gradient(135deg,#332717,#131313);color:#e8c586}
+.owner-eyebrow{display:block;font-size:11px;letter-spacing:.24em;font-weight:700;color:#d3ab69;margin-bottom:10px}
+.owner-login-button{display:flex;justify-content:center;align-items:center;gap:10px}
+.owner-modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.78);backdrop-filter:blur(9px);display:grid;place-items:center;padding:20px}
+.owner-modal{position:relative;width:min(100%,460px);background:linear-gradient(145deg,#24201b,#101113 70%);border:1px solid #79603e;border-radius:22px;padding:36px;box-shadow:0 28px 90px #000b;color:#f7f0e5}
+.owner-modal-close{position:absolute;right:16px;top:16px;background:transparent;color:#d9c5a6;border:0;cursor:pointer;padding:6px}
+.owner-modal-icon{width:60px;height:60px;display:grid;place-items:center;color:#edcb8d;background:#302719;border:1px solid #795e36;border-radius:17px;margin-bottom:22px}
+.owner-modal h2{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.16;margin:0 0 14px}
+.owner-modal p{color:#c6bdb1;line-height:1.65;margin:0 0 26px}
+.owner-modal-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
+.owner-modal-actions .button-gold{display:inline-flex;align-items:center;gap:9px}
+.owner-modal-secondary{background:#292521;border:1px solid #5b4b38;color:#f7f0e5;border-radius:999px;padding:12px 20px;cursor:pointer}
+@media(max-width:650px){.owner-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.owner-tab{width:100%;font-size:13px}.owner-login-brand{align-items:flex-start}.owner-modal{padding:26px}.owner-modal-actions>*{flex:1}}
+@media(prefers-reduced-motion:reduce){.owner-tab,.owner-signout{transition:none}.owner-tab:hover{transform:none}}
+
+/* B3.4.1 — accessible full-width owner sign-in fields */
+.owner-login-field{display:grid;gap:8px;min-width:0}
+.owner-login-field label{color:#f3e9d8;font-size:14px;font-weight:600}
+.owner-input-wrap{display:flex;align-items:center;width:100%;min-width:0;border:1px solid #745b39;border-radius:12px;background:#0b0c0e;transition:border-color .18s,box-shadow .18s}
+.owner-input-wrap:focus-within{border-color:#e8c586;box-shadow:0 0 0 3px rgba(232,197,134,.14)}
+.owner-input-icon{color:#d6ac66;flex:none;margin-left:16px}
+.owner-input-wrap input{flex:1;width:100%;min-width:0;background:transparent;border:0;outline:0;color:#f7f0e5;padding:15px 12px;font:inherit}
+.owner-input-wrap input::placeholder{color:#99918a}
+.owner-password-toggle{display:grid;place-items:center;flex:none;width:44px;height:44px;margin-right:4px;border:0;border-radius:9px;background:transparent;color:#d6ac66;cursor:pointer}
+.owner-password-toggle:hover{background:#2a241c;color:#f4d9a8}
+.owner-password-toggle:focus-visible{outline:2px solid #e9c889;outline-offset:-3px}
+@media(max-width:480px){.owner-login-brand{gap:12px}.owner-login-mark{width:48px;height:48px}}
+
+/* B3.7.1 shared icon-led field system: booking and owner management */
+.premium-field{display:flex;flex-direction:column;gap:9px;min-width:0}
+.premium-field-label{color:#e9decb;font-size:13px;font-weight:600;letter-spacing:.015em}
+.premium-input-shell{display:flex;align-items:center;gap:12px;min-width:0;min-height:52px;background:#0b0c0e;border:1px solid #5c4a33;border-radius:12px;padding:0 15px;transition:border-color .18s,box-shadow .18s}
+.premium-input-shell:focus-within{border-color:#e8c586;box-shadow:0 0 0 3px rgba(232,197,134,.14)}
+.premium-input-icon{color:#d6ac66;flex:none}
+.premium-input-shell input,.premium-input-shell select{width:100%;min-width:0;flex:1;background:transparent;color:#f7f0e5;border:0;outline:0;font:inherit;font-size:14px;padding:14px 0;min-height:50px}
+.premium-input-shell input::placeholder{color:#a39a8f}
+.premium-input-shell select option{background:#151517;color:#f7f0e5}
+.premium-input-shell input::-webkit-calendar-picker-indicator{filter:invert(.85) sepia(.3);cursor:pointer}
+.premium-input-error{border-color:#e68a82}.premium-field-error{display:flex;align-items:center;gap:6px;color:#ffaaa0;font-size:12px}.premium-field-hint{color:#aaa092;font-size:12px}
+.premium-booking-section{margin-top:36px;border-top:1px solid rgba(255,255,255,.10);padding-top:30px}
+.premium-section-title{display:flex;align-items:center;gap:12px}.premium-section-title svg{color:#d6ac66;flex:none}
+.premium-slot{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:12px 18px;color:#fff;background:transparent;font-size:14px;cursor:pointer}
+.premium-slot:hover{border-color:#d9b77d}.premium-slot-active{background:#d9b77d;color:#101010;border-color:#d9b77d}
+.premium-policy{display:flex;align-items:flex-start;gap:14px;margin-top:24px;border:1px solid rgba(217,183,125,.25);background:rgba(217,183,125,.10);border-radius:12px;padding:18px;color:rgba(255,255,255,.8);font-size:14px;line-height:1.7}
+.premium-policy-icon{color:#d6ac66;flex:none;margin-top:2px}.premium-checkout-button{gap:10px}
+.owner-console-field{position:relative;display:flex;align-items:center;gap:8px;border:1px solid #665139;border-radius:10px;background:#0b0c0e;padding-left:12px;min-width:0}
+.owner-console-field svg{color:#d6ac66;flex:none}.owner-console-field input,.owner-console-field select{min-width:0;width:100%;background:transparent;color:#f7f0e5;padding:11px 12px 11px 0;border:0;outline:0;font:inherit}
+.owner-console-field:focus-within{border-color:#e8c586;box-shadow:0 0 0 3px rgba(232,197,134,.14)}
+.owner-console-field option{background:#171719}
+@media(max-width:767px){.premium-booking-section{margin-top:28px;padding-top:26px}.premium-policy{padding:14px}.premium-input-shell{min-height:48px}}
+@media(prefers-reduced-motion:reduce){.premium-input-shell{transition:none}}
+
+/* DUJUAN_GLOBAL_SPACING_B419_START
+   Shared vertical rhythm for top-level page sections.
+   Keep this block after Tailwind imports in app/globals.css. */
+:root {
+  --dujuan-page-section-space: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  :root { --dujuan-page-section-space: 5.75rem; }
+}
+@media (min-width: 1024px) {
+  :root { --dujuan-page-section-space: 8rem; }
+}
+
+/* Full-width sections (hero, services, editorial sections, CTA), and
+   ordinary page shells (Services, About, Contact, Book, Owner pages).
+   Direct-child selectors deliberately avoid nested forms and dashboard cards. */
+#main-content > section,
+#main-content > main.section-wrap,
+#main-content > main.section-space,
+#main-content > div.section-wrap,
+#main-content > div.section-space {
+  padding-top: var(--dujuan-page-section-space);
+  padding-bottom: var(--dujuan-page-section-space);
+}
+
+/* The outer section now owns top/bottom space. Avoid doubling it when the
+   immediate width-constraining section-wrap already has responsive py-* classes. */
+#main-content > section > .section-wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Prevent horizontal padding changes: existing section-wrap stays in charge.
+   Keep space compact on narrow screens while retaining comfortable separation. */
+/* DUJUAN_GLOBAL_SPACING_B419_END */

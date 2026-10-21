@@ -1,0 +1,2 @@
+# B1 verification fix
+Copy all files in this archive over the matching files in the project root. This is a patch, not a complete project. Run `npm run typecheck`, `npm run lint`, `npm run test`, `npm run build`, and `npm run test:e2e` separately. If Windows application control blocks the Next.js SWC native binary, do not disable the policy; use an approved development environment or contact the device administrator.

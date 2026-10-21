@@ -1,0 +1,1 @@
+<button style={field} disabled={loading} onClick={()=>send('delete_time_off',{id:x.id})}>Remove</button>

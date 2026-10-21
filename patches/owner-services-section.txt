@@ -1,0 +1,16 @@
+{tab==='services'&&<section style={panel}>
+ <div className="flex flex-wrap items-start justify-between gap-4">
+  <div>
+   <p className="text-xs font-semibold tracking-[.22em] text-[#d9b77d]">SERVICE MANAGEMENT</p>
+   <h2 className="display mt-2 text-2xl sm:text-3xl">Services & pricing</h2>
+   <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">Edit your existing services or create a new one. New services are inactive until you review and activate them.</p>
+  </div>
+  <button type="button" disabled={loading} onClick={()=>setShowAddService(v=>!v)} aria-expanded={showAddService} className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[#d9b77d]/60 px-5 py-2.5 text-sm font-semibold text-[#e8ca91] transition-colors hover:bg-[#d9b77d]/10 disabled:opacity-50">
+   <span aria-hidden="true">{showAddService?'−':'+'}</span> {showAddService?'Close form':'Add new service'}
+  </button>
+ </div>
+ {showAddService&&<NewServiceForm disabled={loading} onAdd={addService}/>}
+ <div className="mt-8 grid gap-5">
+  {data.services.map(s=><ServiceEditor key={s.id} service={s} disabled={loading} save={v=>send('service',v)}/>)}
+ </div>
+ </section>

@@ -1,0 +1,2 @@
+import { BookingForm } from './booking-form';
+export default function BookPage(){return <section className="section-wrap max-w-5xl py-16 md:py-24"><p className="gold text-xs uppercase tracking-[.3em]">Your signature appointment</p><h1 className="display mt-4 text-5xl md:text-6xl">Reserve your <em>time.</em></h1><p className="mt-5 max-w-2xl text-white/60">Explore the appointment experience. Live booking will open after Dujuan confirms services, pricing, hours, and secure checkout is connected.</p><BookingForm/></section>}

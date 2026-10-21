@@ -1,0 +1,56 @@
+node_modules
+.next
+.env*
+!.env.example
+coverage
+playwright-report
+test-results
+*.tsbuildinfo
+
+.next-dev/
+# Dependencies
+/node_modules/
+
+# Next.js generated builds
+/.next/
+/.next-dev/
+/out/
+/build/
+
+# Private environment variables
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Supabase local state
+/supabase/.temp/
+/supabase/.branches/
+
+# Local backups and temporary files
+/backups/
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
+# Historical build backups
+.backups/
+b416b-backup-*/
+*.bak
+*.b419-backup-*
+
+# Local-only payment experiments
+local-only-owner-sandbox-hold.sql
+replay-paid-test-event.ps1
+supabase/snippets/
+
+# Generated and private files
+.next/
+.next-dev/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+

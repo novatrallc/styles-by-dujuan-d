@@ -1,0 +1,36 @@
+/* DUJUAN_GLOBAL_SPACING_B419_START
+   Shared vertical rhythm for top-level page sections.
+   Keep this block after Tailwind imports in app/globals.css. */
+:root {
+  --dujuan-page-section-space: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  :root { --dujuan-page-section-space: 5.75rem; }
+}
+@media (min-width: 1024px) {
+  :root { --dujuan-page-section-space: 8rem; }
+}
+
+/* Full-width sections (hero, services, editorial sections, CTA), and
+   ordinary page shells (Services, About, Contact, Book, Owner pages).
+   Direct-child selectors deliberately avoid nested forms and dashboard cards. */
+#main-content > section,
+#main-content > main.section-wrap,
+#main-content > main.section-space,
+#main-content > div.section-wrap,
+#main-content > div.section-space {
+  padding-top: var(--dujuan-page-section-space);
+  padding-bottom: var(--dujuan-page-section-space);
+}
+
+/* The outer section now owns top/bottom space. Avoid doubling it when the
+   immediate width-constraining section-wrap already has responsive py-* classes. */
+#main-content > section > .section-wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Prevent horizontal padding changes: existing section-wrap stays in charge.
+   Keep space compact on narrow screens while retaining comfortable separation. */
+/* DUJUAN_GLOBAL_SPACING_B419_END */

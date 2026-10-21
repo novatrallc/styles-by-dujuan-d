@@ -1,0 +1,38 @@
+ function changeAppointment(a:Appt, operation:OwnerAction){
+  setOwnerConfirmation({kind:'appointment',appointment:a,operation});
+ }
+ function removeTimeOff(block:Off){
+  setOwnerConfirmation({kind:'timeoff',block});
+ }
+ function confirmedOwnerAction(){
+  const action=ownerConfirmation;
+  if(!action)return;
+  setOwnerConfirmation(null);
+  if(action.kind==='appointment'){
+   void send('appointment_status',{id:action.appointment.id,operation:action.operation});
+  }else{
+   void send('delete_time_off',{id:action.block.id});
+  }
+ }
+ function ownerConfirmationDetails(){
+  const action=ownerConfirmation;
+  if(!action)return null;
+  if(action.kind==='timeoff'){
+   const zone=data?.settings?.timezone??'America/New_York';
+   const when=new Date(action.block.starts_at).toLocaleString('en-US',{timeZone:zone,dateStyle:'medium',timeStyle:'short'});
+   return { eyebrow:'SCHEDULE MANAGEMENT',title:'Remove this time-off block?',subject:when,
+    description:'Removing this block restores the availability of these hours, subject to other appointments and schedule restrictions. This does not cancel any existing appointment.',
+    confirmLabel:'Remove block',tone:'warning' as const };
+  }
+  const a=action.appointment;
+  const name=`${a.customer_name} · ${new Date(a.starts_at).toLocaleString('en-US',{timeZone:data?.settings?.timezone??'America/New_York',dateStyle:'medium',timeStyle:'short'})}`;
+  if(action.operation==='cancel')return {eyebrow:'APPOINTMENT MANAGEMENT',title:'Cancel this appointment?',subject:name,
+   description:'The appointment will be cancelled. No automatic email or refund will be sent. Review the payment and notify the customer separately if needed.',
+   confirmLabel:'Cancel appointment',tone:'warning' as const};
+  if(action.operation==='complete')return {eyebrow:'APPOINTMENT MANAGEMENT',title:'Mark as completed?',subject:name,
+   description:'This marks the appointment as completed in the owner console. It does not charge a customer or send an email.',
+   confirmLabel:'Mark completed',tone:'neutral' as const};
+  return {eyebrow:'APPOINTMENT MANAGEMENT',title:'Mark as no-show?',subject:name,
+   description:'This marks the appointment as a no-show. Any refund or customer notification must be handled separately.',
+   confirmLabel:'Mark no-show',tone:'warning' as const};
+ }

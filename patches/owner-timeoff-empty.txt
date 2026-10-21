@@ -1,0 +1,1 @@
+{data.exceptions.length===0&&<p className="my-5 text-sm leading-6 text-white/55">No upcoming time-off blocks. Use the form below to block a holiday, appointment, or unavailable hours.</p>}

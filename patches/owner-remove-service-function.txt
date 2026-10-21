@@ -1,0 +1,26 @@
+ async function removeService(service:Service, operation:'deactivate'|'delete'):Promise<void>{
+  if(!client)return;
+  const prompt=operation==='deactivate'
+   ? `Deactivate "${service.name}"? It will no longer be bookable, but past appointments and payment records will be preserved. You can reactivate it later.`
+   : `PERMANENTLY DELETE "${service.name}"? This cannot be undone. Only inactive services without any appointment history can be deleted, and only in the local sandbox.`;
+  if(!window.confirm(prompt))return;
+  setLoading(true);setMessage('');
+  try{
+   const {data:session}=await client.auth.getSession();
+   const t=session.session?.access_token;
+   if(!t){setMessage('Please sign in again.');return;}
+   const response=await fetch('/api/owner/services/remove',{
+    method:'POST',
+    headers:{'Content-Type':'application/json',Authorization:`Bearer ${t}`},
+    body:JSON.stringify({id:service.id,operation}),
+    cache:'no-store',
+   });
+   const result=await response.json().catch(()=>({error:'Unable to read the service response.'}));
+   if(!response.ok){setMessage(result.error??'Service action failed.');return;}
+   await load(t);
+   setMessage(operation==='deactivate'
+    ? `"${service.name}" is now inactive. Its appointment history has been preserved.`
+    : `"${service.name}" was permanently deleted from local Supabase.`);
+  }catch{setMessage('Could not reach the server. Please try again.');}
+  finally{setLoading(false);}
+ }
